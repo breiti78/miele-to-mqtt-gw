@@ -16,6 +16,7 @@ export type ConfigMiele = {
     "client-secret": string
     username: string
     password: string
+    vg: string
 
     mode: "sse" | "polling"
     "polling-interval"?: number
