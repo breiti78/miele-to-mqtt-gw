@@ -1,16 +1,8 @@
 name: Build release
 
 on:
-  workflow_dispatch:
-    inputs:
-      releaseType:
-        description: Release type
-        required: true
-        type: choice
-        options:
-          - patch
-          - minor
-          - major
+  push:
+    branches: master
 
 jobs:
   build:
