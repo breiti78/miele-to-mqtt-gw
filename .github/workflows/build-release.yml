@@ -20,18 +20,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - uses: philipparndt/get-release-number@v1
-        id: next
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          releaseType: ${{ github.event.inputs.releaseType }}
-
-      - name: Update version
-        working-directory: app
-        env:
-          RELEASE_VERSION: ${{ steps.next.outputs.version }}
-        run: npm version $RELEASE_VERSION --allow-same-version
-
       - name: Install
         working-directory: app
         shell: bash
@@ -58,31 +46,11 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v3
         env:
-          RELEASE_VERSION: ${{ steps.next.outputs.version }}
+          RELEASE_VERSION: 0.0.1
         with:
           context: .
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
           push: true
           tags: |
-            pharndt/mielemqtt:pre
-            pharndt/mielemqtt:${{env.RELEASE_VERSION}}-pre
-
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASE_VERSION: ${{ steps.next.outputs.version }}
-        with:
-          tag_name: ${{env.RELEASE_VERSION}}
-          release_name: ${{env.RELEASE_VERSION}}
-          body: |
-            Docker tag: `pharndt/mielemqtt:${{env.RELEASE_VERSION}}-pre`
-
-            Changes in this Release
-              - Dependency update
-              - ...
-
-          draft: false
-          prerelease: true
+            breiti78/mielemqtt:latest
