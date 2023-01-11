@@ -17,6 +17,7 @@ export type ConfigMiele = {
     username: string
     password: string
     vg: string
+    language: string
 
     mode: "sse" | "polling"
     "polling-interval"?: number
@@ -45,7 +46,8 @@ const mqttDefaults = {
 
 const mieleDefaults = {
     mode: "sse",
-    vg: "de-DE"
+    vg: "de-DE",
+    language: "de"
 }
 
 const configDefaults = {
