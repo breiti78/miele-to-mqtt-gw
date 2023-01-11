@@ -1,3 +1,4 @@
+import { ConfigMiele, getAppConfig } from "../config/config"
 import EventSource from "eventsource"
 import { log } from "../logger"
 import { convertDevices } from "./miele"
@@ -6,11 +7,12 @@ import { MieleDevice } from "./miele-types"
 type DevicesListener = (devices: MieleDevice[]) => void
 
 export const startSSE = (token: string) => {
+    const config: ConfigMiele = getAppConfig().miele
     log.info("Starting Server-Sent events")
 
     const eventSourceInitDict = {
         headers: {
-            "Accept-Language": "en-GB",
+            "Accept-Language": config.language,
             Authorization: "Bearer " + token,
             Accept: "text/event-stream"
         }
