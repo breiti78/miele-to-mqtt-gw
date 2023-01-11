@@ -153,3 +153,4 @@ Build the docker container using `build.sh`.
 ## openHAB configuration
 
 see [openHAB example](openHAB.md)
+
