@@ -44,7 +44,8 @@ const mqttDefaults = {
 }
 
 const mieleDefaults = {
-    mode: "sse"
+    mode: "sse",
+    vg: "de-DE"
 }
 
 const configDefaults = {
