@@ -7,7 +7,7 @@ import { DeviceStatus, MieleDevice, Phase } from "./miele-types"
 export const fetchDevices = async (token: string) => {
     const config: ConfigMiele = getAppConfig().miele
     const response = await axios.get(
-        `https://api.mcs3.miele.com/v1/devices?language=de`,
+        `https://api.mcs3.miele.com/v1/devices?language=${config.language}`,
         {
             headers: {
                 Authorization: `Bearer ${token}`,
