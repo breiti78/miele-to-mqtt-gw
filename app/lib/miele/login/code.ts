@@ -14,7 +14,7 @@ export const fetchCode = async () => {
             state: "login",
             response_type: "code",
             client_id: config["client-id"],
-            vgInformationSelector: "de-DE"
+            vgInformationSelector: config.vg
         }),
         {
             headers: {
